@@ -1,5 +1,381 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>史雷的博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="史雷的博客"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="史雷的博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="分布式理论"><meta property="og:type" content="blog"><meta property="og:title" content="史雷的博客"><meta property="og:url" content="http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"><meta property="og:site_name" content="史雷的博客"><meta property="og:description" content="分布式理论"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/dubbo-architecture-roadmap.jpg"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133522303.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133625663.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133710784.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133801873.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801134404631.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801134657756.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/dubbo-architecture.jpg"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/architecture.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801140529370.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801173958146.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801172648723.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801173023636.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801174251778.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801175746901.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801175928795.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180120251.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180225001.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180302890.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801181825286.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801183043114.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801183113485.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801204543375.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801205620564.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801205708690.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801211028698.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801221551593.png"><meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801222026747.png"><meta property="article:published_time" content="2021-08-16T08:59:33.824Z"><meta property="article:modified_time" content="2021-08-16T09:09:46.939Z"><meta property="article:author" content="史雷"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/dubbo-architecture-roadmap.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"},"headline":"史雷的博客","image":["https://gitee.com/lzh_gitee/springboot_image/raw/master/img/dubbo-architecture-roadmap.jpg","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133522303.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133625663.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133710784.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133801873.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801134404631.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801134657756.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/dubbo-architecture.jpg","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/architecture.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801140529370.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801173958146.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801172648723.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801173023636.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801174251778.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801175746901.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801175928795.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180120251.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180225001.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180302890.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801181825286.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801183043114.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801183113485.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801204543375.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801205620564.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801205708690.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801211028698.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801221551593.png","https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801222026747.png"],"datePublished":"2021-08-16T08:59:33.824Z","dateModified":"2021-08-16T09:09:46.939Z","author":{"@type":"Person","name":"史雷"},"publisher":{"@type":"Organization","name":"史雷的博客","logo":{"@type":"ImageObject","url":"http://jarsure.github.io/img/logo.svg"}},"description":"分布式理论"}</script><link rel="canonical" href="http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="史雷的博客" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="/null"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Suche" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Gepostet vor&nbsp;<time dateTime="2021-08-16T08:59:33.824Z" title="2021/8/16 下午4:59:33">2021-08-16</time></span><span class="level-item">Aktualisiert vor&nbsp;<time dateTime="2021-08-16T09:09:46.939Z" title="2021/8/16 下午5:09:46">2021-08-16</time></span><span class="level-item">26 分钟 lesen (Über 3965 Wörter)</span></div></div><div class="content"><h1 id="分布式理论"><a href="#分布式理论" class="headerlink" title="分布式理论"></a>分布式理论</h1><span id="more"></span>
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="史雷的博客">
+    <title> - 史雷的博客</title>
+    <meta name="author" content="史雷">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"史雷","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"分布式理论\n\n什么是分布式系统？在《分布式系统原理与范型》一书中有如下定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”；\n分布式系统是由一组通过网络进行通信、为了完成共同的任务而协调工作的计算机节点组成的系统。分布式系统的出现是为了用廉价的、普通的机器完成单个计算机无法完成的计算、存储任务。其目的是利用更多的机器，处理更多的数据。\n分布式系统（distributed system）是建立在网络之上的软件系统。\n首先需要明确的是，只有当单个节点的处理能力无法满足日益增长的计算、存储任务的时候，且硬件的提升（加内存、加磁盘、使用更好的CPU）高昂到得不偿失的时候，应用程序也不能进一步优化的时候，我们才需要考虑分布式系统。因为，分布式系统要解决的问题本身就是和单机系统一样的，而由于分布式系统多节点、通过网络通信的拓扑结构，会引入很多单机系统没有的问题，为了解决这些问题又会引入更多的机制、协议，带来更多的问题。。。\nDubbo文档随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，急需一个治理系统确保架构有条不紊的演进。\n在Dubbo的官网文档有这样一张图\n\n单一应用架构当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。\n\n适用于小型网站，小型管理系统，将所有功能都部署到一个功能里，简单易用。\n缺点：\n1、性能扩展比较难\n2、协同开发问题\n3、不利于升级维护\n垂直应用架构当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提升效率。此时，用于加速前端页面开发的Web框架(MVC)是关键。\n\n通过切分业务来实现各个模块独立部署，降低了维护和部署的难度，团队各司其职更易管理，性能扩展也更方便，更有针对性。\n缺点：公用模块无法重复利用，开发性的浪费\n分布式服务架构当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。此时，用于提高业务复用及整合的**分布式服务框架(RPC)**是关键。\n\n流动计算架构当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的资源调度和治理中心(SOA)[ Service Oriented Architecture]是关键。\n\n什么是RPCRPC【Remote Procedure Call】是指远程过程调用，是一种进程间通信方式，他是一种技术的思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。\n也就是说两台服务器A，B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。为什么要用RPC呢？就是无法在一个进程内，甚至一个计算机内通过本地调用的方式完成的需求，比如不同的系统间的通讯，甚至不同的组织间的通讯，由于计算能力需要横向扩展，需要在多台机器组成的集群上部署应用。RPC就是要像调用本地的函数一样去调远程函数；\n推荐阅读文章：https://www.jianshu.com/p/2accc2840a1b\nRPC基本原理\n\n\nRPC两个核心模块：通讯，序列化。\n测试环境搭建DubboApache Dubbo |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。\ndubbo官网 http://dubbo.apache.org/zh-cn/index.html\n1.了解Dubbo的特性\n2.查看官方文档\ndubbo基本概念\n\n\n服务提供者（Provider）：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。\n服务消费者（Consumer）：调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自己所需的服务，服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。\n注册中心（Registry）：注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者\n监控中心（Monitor）：服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心\n调用关系说明\n\n服务容器负责启动，加载，运行服务提供者。\n\n服务提供者在启动时，向注册中心注册自己提供的服务。\n\n服务消费者在启动时，向注册中心订阅自己所需的服务。\n\n注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者。\n\n服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。\n\n服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。\n\n\nDubbo环境搭建点进dubbo官方文档，推荐我们使用Zookeeper 注册中心\n\n什么是zookeeper呢？可以查看官方文档\nWindow下安装zookeeper\n下载zookeeper ：地址， 我们下载3.6.1， 最新版！解压zookeeper\n下载带bin的\n\n\n运行/bin/zkServer.cmd ，初次运行会报错，没有zoo.cfg配置文件；\n可能遇到问题：闪退 !\n解决方案：编辑zkServer.cmd文件末尾添加pause 。这样运行出错就不会退出，会提示错误信息，方便找到原因。\n\n\n\n修改zoo.cfg配置文件\n\n将conf文件夹下面的zoo_sample.cfg复制一份改名为zoo.cfg即可。\n\n注意几个重要位置：\ndataDir=./  临时数据存储的目录（可写相对路径）\nclientPort=2181  zookeeper的端口号\n\n修改完成后再次启动zookeeper\n\n\n\n\n使用zkCli.cmd测试\n\nls /：列出zookeeper根下保存的所有节点\n\n报错别着急，多试几次就好了，我试了三次o(╥﹏╥)o，看报错信息\n\n\ncreate –e /kuangshen 123：创建一个kuangshen节点，值为123\n\n\nget /kuangshen：获取/kuangshen节点的值\n\n\n我们再来查看一下节点：ls /\n\n\n\n\n\nwindow下安装dubbo-admin\ndubbo本身并不是一个服务软件。它其实就是一个jar包，能够帮你的java程序连接到zookeeper，并利用zookeeper消费、提供服务。\n\n但是为了让用户更好的管理监控众多的dubbo服务，官方提供了一个可视化的监控程序dubbo-admin，不过这个监控即使不装也不影响使用。\n\n\n我们这里来安装一下：\n1、下载dubbo-admin\n地址 ：https://github.com/apache/dubbo-admin/tree/master\n2、解压进入目录\n修改 dubbo-admin\\src\\main\\resources \\application.properties 指定zookeeper地址\n12345678910server.port=7001spring.velocity.cache=falsespring.velocity.charset=UTF-8spring.velocity.layout-url=/templates/default.vmspring.messages.fallback-to-system-locale=falsespring.messages.basename=i18n/messagespring.root.password=rootspring.guest.password=guestdubbo.registry.address=zookeeper://127.0.0.1:2181\n\n3、在项目目录下打包dubbo-admin\n1mvn clean package -Dmaven.test.skip=true\n\n第一次打包的过程有点慢，需要耐心等待！直到成功！\n\n4、执行 dubbo-admin\\target 下的dubbo-admin-0.0.1-SNAPSHOT.jar\n1java -jar dubbo-admin-0.0.1-SNAPSHOT.jar\n\n【注意：zookeeper的服务一定要打开！】\n执行完毕，我们去访问一下 http://localhost:7001/ ， 这时候我们需要输入登录账户和密码，我们都是默认的root-root；\n\n登录成功后，查看界面\n\n安装完成！\n总结：\n\nzookeeper :注册中心\ndubbo-admin:是一 个监控管理后台-查看我们注册了哪些服务，哪些服务被消费了（可以不用）\nDubbo: jar包\n\nSpringBoot + Dubbo + zookeeper框架搭建1. 启动zookeeper ！\n2. IDEA创建一个空项目；\n3.创建一个模块，实现服务提供者：provider-server ， 选择web依赖即可\n4.项目创建完毕，我们写一个服务，比如卖票的服务；\n编写接口\n12345package nuc.ss.service;public interface TicketService &#123;   public String getTicket();&#125;\n\n编写实现类\n12345678package nuc.ss.service;public class TicketServiceImpl implements TicketService &#123;    @Override    public String getTicket() &#123;        return &quot;《狂神说Java》&quot;;    &#125;&#125;\n\n5.创建一个模块，实现服务消费者：consumer-server ， 选择web依赖即可\n6.项目创建完毕，我们写一个服务，比如用户的服务；\n编写service\n12345package nuc.ss.service;public interface UserService &#123;   //我们需要去拿去注册中心的服务&#125;\n\n需求：现在我们的用户想使用买票的服务，这要怎么弄呢 ？\n服务提供者1、将服务提供者注册到注册中心，我们需要整合Dubbo和zookeeper，所以需要导包\n我们从dubbo官网进入github，看下方的帮助文档，找到dubbo-springboot，找到依赖包\n123456&lt;!-- Dubbo Spring Boot Starter --&gt;&lt;dependency&gt;   &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;   &lt;artifactId&gt;dubbo-spring-boot-starter&lt;/artifactId&gt;   &lt;version&gt;2.7.3&lt;/version&gt;&lt;/dependency&gt;    \n\nzookeeper的包我们去maven仓库下载，zkclient；\n123456&lt;!-- https://mvnrepository.com/artifact/com.github.sgroschupf/zkclient --&gt;&lt;dependency&gt;   &lt;groupId&gt;com.github.sgroschupf&lt;/groupId&gt;   &lt;artifactId&gt;zkclient&lt;/artifactId&gt;   &lt;version&gt;0.1&lt;/version&gt;&lt;/dependency&gt;\n\n【新版的坑】zookeeper及其依赖包，解决日志冲突，还需要剔除日志依赖；\n1234567891011121314151617181920212223&lt;!-- 引入zookeeper --&gt;&lt;dependency&gt;   &lt;groupId&gt;org.apache.curator&lt;/groupId&gt;   &lt;artifactId&gt;curator-framework&lt;/artifactId&gt;   &lt;version&gt;2.12.0&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;   &lt;groupId&gt;org.apache.curator&lt;/groupId&gt;   &lt;artifactId&gt;curator-recipes&lt;/artifactId&gt;   &lt;version&gt;2.12.0&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;   &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;   &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;   &lt;version&gt;3.4.14&lt;/version&gt;   &lt;!--排除这个slf4j-log4j12--&gt;   &lt;exclusions&gt;       &lt;exclusion&gt;           &lt;groupId&gt;org.slf4j&lt;/groupId&gt;           &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;       &lt;/exclusion&gt;   &lt;/exclusions&gt;&lt;/dependency&gt;\n\n2、在springboot配置文件中配置dubbo相关属性！\n12345678server.port=8001#当前应用名字dubbo.application.name=provider-server#注册中心地址dubbo.registry.address=zookeeper://127.0.0.1:2181#扫描指定包下服务dubbo.scan.base-packages=nuc.ss.service\n\n3、在service的实现类中配置服务注解，发布服务！注意导包问题\n12345678910111213package nuc.ss.service;import org.apache.dubbo.config.annotation.Service;import org.springframework.stereotype.Component;@Service    //可以被扫描到，在项目一启动就自动注册到注册中心@Component  //使用Dubbo后尽量不要用Service注解public class TicketServiceImpl implements TicketService &#123;    @Override    public String getTicket() &#123;        return &quot;《狂神说Java》&quot;;    &#125;&#125;\n\n逻辑理解 ：应用启动起来，dubbo就会扫描指定的包下带有@component注解的服务，将它发布在指定的注册中心中！\n4、运行测试\n\n\n\n服务消费者1、导入依赖，和之前的依赖一样；\n12345678910111213141516171819202122232425262728293031323334353637&lt;!--dubbo--&gt;&lt;!-- Dubbo Spring Boot Starter --&gt;&lt;dependency&gt;   &lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;   &lt;artifactId&gt;dubbo-spring-boot-starter&lt;/artifactId&gt;   &lt;version&gt;2.7.3&lt;/version&gt;&lt;/dependency&gt;&lt;!--zookeeper--&gt;&lt;!-- https://mvnrepository.com/artifact/com.github.sgroschupf/zkclient --&gt;&lt;dependency&gt;   &lt;groupId&gt;com.github.sgroschupf&lt;/groupId&gt;   &lt;artifactId&gt;zkclient&lt;/artifactId&gt;   &lt;version&gt;0.1&lt;/version&gt;&lt;/dependency&gt;&lt;!-- 引入zookeeper --&gt;&lt;dependency&gt;   &lt;groupId&gt;org.apache.curator&lt;/groupId&gt;   &lt;artifactId&gt;curator-framework&lt;/artifactId&gt;   &lt;version&gt;2.12.0&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;   &lt;groupId&gt;org.apache.curator&lt;/groupId&gt;   &lt;artifactId&gt;curator-recipes&lt;/artifactId&gt;   &lt;version&gt;2.12.0&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;   &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;   &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;   &lt;version&gt;3.4.14&lt;/version&gt;   &lt;!--排除这个slf4j-log4j12--&gt;   &lt;exclusions&gt;       &lt;exclusion&gt;           &lt;groupId&gt;org.slf4j&lt;/groupId&gt;           &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;       &lt;/exclusion&gt;   &lt;/exclusions&gt;&lt;/dependency&gt;\n\n2、配置参数\n123456server.port=8002#当前应用名字dubbo.application.name=consumer-server#注册中心地址dubbo.registry.address=zookeeper://127.0.0.1:2181\n\n3. 本来正常步骤是需要将服务提供者的接口打包，然后用pom文件导入，我们这里使用简单的方式，直接将服务的接口拿过来，路径必须保证正确，即和服务提供者相同；\n\n4. 完善消费者的服务类\n123456789101112131415161718package nuc.ss.service;import org.apache.dubbo.config.annotation.Reference;import org.springframework.stereotype.Service;@Service //注入到容器中public class UserService &#123;    // 想拿到provider-server提供的票，要去注册中心拿到服务    @Reference //引用，Pom坐标，可以定义路径相同的接口名            TicketService ticketService;    public void bugTicket()&#123;        String ticket = ticketService.getTicket();        System.out.println(&quot;在注册中心买到&quot;+ticket);    &#125;&#125;\n\n5. 测试类编写；\n1234567891011121314@SpringBootTestpublic class ConsumerServerApplicationTests &#123;   @Autowired   UserService userService;   @Test   public void contextLoads() &#123;       userService.bugTicket();  &#125;&#125;\n\n启动测试1. 开启zookeeper\n2. 打开dubbo-admin实现监控【可以不用做】\n3. 开启服务者\n4. 消费者消费测试，结果：\n\n监控中心 ：\n\nok , 这就是SpingBoot + dubbo + zookeeper实现分布式开发的应用，其实就是一个服务拆分的思想；\n","dateCreated":"2021-08-16T16:59:33+08:00","dateModified":"2021-08-16T17:09:46+08:00","datePublished":"2021-08-16T16:59:33+08:00","description":"分布式理论","headline":"","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"},"publisher":{"@type":"Organization","name":"史雷","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"}</script>
+    <meta name="description" content="分布式理论">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="史雷的博客">
+<meta property="og:url" content="http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/index.html">
+<meta property="og:site_name" content="史雷的博客">
+<meta property="og:description" content="分布式理论">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/dubbo-architecture-roadmap.jpg">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133522303.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133625663.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133710784.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801133801873.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801134404631.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801134657756.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/dubbo-architecture.jpg">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/architecture.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801140529370.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801173958146.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801172648723.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801173023636.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801174251778.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801175746901.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801175928795.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180120251.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180225001.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801180302890.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801181825286.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801183043114.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801183113485.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801204543375.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801205620564.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801205708690.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801211028698.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801221551593.png">
+<meta property="og:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801222026747.png">
+<meta property="article:published_time" content="2021-08-16T08:59:33.824Z">
+<meta property="article:modified_time" content="2021-08-16T09:09:46.939Z">
+<meta property="article:author" content="史雷">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/dubbo-architecture-roadmap.jpg">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            史雷的博客
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Öffne den Link: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="Kategorien"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Kategorien</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="Tags"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="Archiv"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archiv</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Suche"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Suche</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="Über"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Über</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="http://stackoverflow.com/users"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Stack Overflow"
+                        >
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://twitter.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://facebook.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Facebook"
+                        >
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://plus.google.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Google Plus"
+                        >
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google Plus</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/profile/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/mailto"
+                            
+                            rel="noopener"
+                            title="E-Mail"
+                        >
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">E-Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            (kein Titel)
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-08-16T16:59:33+08:00">
+	
+		    16 8月 2021
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="分布式理论"><a href="#分布式理论" class="headerlink" title="分布式理论"></a>分布式理论</h1><span id="more"></span>
 
 <h2 id="什么是分布式系统？"><a href="#什么是分布式系统？" class="headerlink" title="什么是分布式系统？"></a><strong>什么是分布式系统？</strong></h2><p>在《分布式系统原理与范型》一书中有如下定义：“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”；</p>
 <p>分布式系统是由一组通过网络进行通信、为了完成共同的任务而协调工作的计算机节点组成的系统。分布式系统的出现是为了用廉价的、普通的机器完成单个计算机无法完成的计算、存储任务。其目的是<strong>利用更多的机器，处理更多的数据</strong>。</p>
@@ -194,48 +570,327 @@
 <p><strong>监控中心 ：</strong></p>
 <p><img src="https://gitee.com/lzh_gitee/springboot_image/raw/master/img/image-20200801222026747.png" alt="image-20200801222026747"></p>
 <p><strong>ok , 这就是SpingBoot + dubbo + zookeeper实现分布式开发的应用，其实就是一个服务拆分的思想；</strong></p>
-</div><div class="article-licensing box"><div class="licensing-title"><p><a href="http://jarsure.github.io/2021/08/16/SpringBoot17：Dubbo和Zookeeper集成/">http://jarsure.github.io/2021/08/16/SpringBoot17：Dubbo和Zookeeper集成/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>史雷</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-08-16</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-08-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Gefällt Ihnen der Artikel? Unterstützen Sie den Autor mit</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Kauf mir einen Kaffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/08/16/SpringBoot18%EF%BC%9A%E9%9B%86%E6%88%90SpringSecurity/"><i class="level-item fas fa-chevron-left"></i><span class="level-item"> </span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/08/16/SpringBoot15%EF%BC%9A%E5%BC%82%E6%AD%A5%E3%80%81%E5%AE%9A%E6%97%B6%E3%80%81%E9%82%AE%E4%BB%B6%E4%BB%BB%E5%8A%A1/"><span class="level-item"> </span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Kommentare</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar2.jpg" alt="史雷"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">史雷</p><p class="is-size-6 is-block">calm and passion</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Seiten</p><a href="/archives"><p class="title">27</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Kategorien</p><a href="/categories"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">11</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">Folgen</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Kategorien</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/java/"><span class="level-start"><span class="level-item">java</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="level-start"><span class="level-item">技术</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E6%8A%80%E6%9C%AF/javaweb/"><span class="level-start"><span class="level-item">javaweb</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%8A%80%E6%9C%AF/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Letzte Einträge</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-16T08:59:33.835Z">2021-08-16</time></p><p class="title"><a href="/2021/08/16/SpringBoot18%EF%BC%9A%E9%9B%86%E6%88%90SpringSecurity/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-16T08:59:33.824Z">2021-08-16</time></p><p class="title"><a href="/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-16T08:59:33.812Z">2021-08-16</time></p><p class="title"><a href="/2021/08/16/SpringBoot15%EF%BC%9A%E5%BC%82%E6%AD%A5%E3%80%81%E5%AE%9A%E6%97%B6%E3%80%81%E9%82%AE%E4%BB%B6%E4%BB%BB%E5%8A%A1/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-16T08:59:33.804Z">2021-08-16</time></p><p class="title"><a href="/2021/08/16/SpringBoot14%EF%BC%9ASwagger/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-16T08:59:33.792Z">2021-08-16</time></p><p class="title"><a href="/2021/08/16/SpringBoot13%EF%BC%9A%E9%A1%B5%E9%9D%A2%E5%9B%BD%E9%99%85%E5%8C%96/"> </a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archive</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/bugs/"><span class="tag">bugs</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cookie/"><span class="tag">cookie</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/get-post/"><span class="tag">get/post</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/javaweb/"><span class="tag">javaweb</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/session/"><span class="tag">session</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/springboot/"><span class="tag">springboot</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tomcat/"><span class="tag">tomcat</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><span class="tag">计算机网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9A%8F%E7%AC%94/"><span class="tag">随笔</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Abonnieren Sie Updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Abonnieren"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="史雷的博客" height="28"></a><p class="is-size-7"><span>&copy; 2021 史雷</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh_CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Zurück nach oben" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern.",
-          dismiss: "Verstanden!",
-          allow: "Cookies zulassen",
-          deny: "Ablehnen",
-          link: "Mehr erfahren",
-          policy: "Cookie-Richtlinie",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Tippen Sie etwas..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"Tippen Sie etwas...","untitled":"(Ohne Titel)","posts":"Seiten","pages":"Pages","categories":"Kategorien","tags":"Tags"});
-        });</script></body></html>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/08/16/SpringBoot18%EF%BC%9A%E9%9B%86%E6%88%90SpringSecurity/"
+                    data-tooltip="(kein Titel)"
+                    aria-label="FRÜHER: (kein Titel)"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/08/16/SpringBoot15%EF%BC%9A%E5%BC%82%E6%AD%A5%E3%80%81%E5%AE%9A%E6%97%B6%E3%80%81%E9%82%AE%E4%BB%B6%E4%BB%BB%E5%8A%A1/"
+                    data-tooltip="(kein Titel)"
+                    aria-label="NÄCHSTER: (kein Titel)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                    title="Teilen auf Facebook"
+                    aria-label="Teilen auf Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                    title="Teilen auf Twitter"
+                    aria-label="Teilen auf Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                    title="Teilen auf Google Plus"
+                    aria-label="Teilen auf Google Plus"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 史雷. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/08/16/SpringBoot18%EF%BC%9A%E9%9B%86%E6%88%90SpringSecurity/"
+                    data-tooltip="(kein Titel)"
+                    aria-label="FRÜHER: (kein Titel)"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/08/16/SpringBoot15%EF%BC%9A%E5%BC%82%E6%AD%A5%E3%80%81%E5%AE%9A%E6%97%B6%E3%80%81%E9%82%AE%E4%BB%B6%E4%BB%BB%E5%8A%A1/"
+                    data-tooltip="(kein Titel)"
+                    aria-label="NÄCHSTER: (kein Titel)"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                    title="Teilen auf Facebook"
+                    aria-label="Teilen auf Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                    title="Teilen auf Twitter"
+                    aria-label="Teilen auf Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                    title="Teilen auf Google Plus"
+                    aria-label="Teilen auf Google Plus"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                        aria-label="Teilen auf Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                        aria-label="Teilen auf Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jarsure.github.io/2021/08/16/SpringBoot17%EF%BC%9ADubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"
+                        aria-label="Teilen auf Google Plus"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">史雷</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

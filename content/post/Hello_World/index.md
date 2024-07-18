@@ -18,4 +18,8 @@ draft: false
 
 # 你好,世界
 
-![lying in the wild](index/lying%20in%20the%20wild.png)
+![2](index/2.png)
+
+
+
+愿你寻到自己的天堂.

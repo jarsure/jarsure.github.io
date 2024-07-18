@@ -18,4 +18,4 @@ draft: false
 
 # 你好,世界
 
-![1 (1)](index/1%20(1).png)
+![lying in the wild](index/lying%20in%20the%20wild.png)

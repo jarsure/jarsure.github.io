@@ -9,7 +9,7 @@ hidden: false
 comments: true
 draft: false
 categories: ["java","restful","ssm"]
-tags: ["restful详解","尚硅谷ssm,restful笔记"]
+tags: ["restful详解","尚硅谷ssm","restful笔记"]
 keywords: ["java","restful","ssm"]
 ---
 

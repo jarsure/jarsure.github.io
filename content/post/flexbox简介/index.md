@@ -17,8 +17,6 @@ keywords: ["前端","css","flexbox","flex"]
 
 ## Flexbox 简介
 
-![undefined - Imgur (4)](index/undefined%20-%20Imgur%20(4).jpg)
-
 Flexbox（Flexible Box）是一种 CSS 布局模式，旨在更好地排列和对齐容器中的子元素，特别是在容器的大小未知或动态变化时。Flexbox 布局的主要思想是让容器的子元素能够“弹性”地填充空间，并且能够轻松地调整元素之间的间距。
 
 ### Flex 容器与子元素

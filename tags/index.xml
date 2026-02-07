@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tags on 演示站点</title>
+        <link>https://jarsure.github.io/tags/</link>
+        <description>Recent content in Tags on 演示站点</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>jarsure</copyright>
+        <lastBuildDate>Sun, 08 Feb 2026 02:01:21 +0800</lastBuildDate><atom:link href="https://jarsure.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>测试</title>
+        <link>https://jarsure.github.io/tags/%E6%B5%8B%E8%AF%95/</link>
+        <pubDate>Sun, 08 Feb 2026 02:01:21 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/%E6%B5%8B%E8%AF%95/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Css</title>
+        <link>https://jarsure.github.io/tags/css/</link>
+        <pubDate>Mon, 12 Aug 2024 17:41:09 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/css/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Flex</title>
+        <link>https://jarsure.github.io/tags/flex/</link>
+        <pubDate>Mon, 12 Aug 2024 17:41:09 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/flex/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Flexbox</title>
+        <link>https://jarsure.github.io/tags/flexbox/</link>
+        <pubDate>Mon, 12 Aug 2024 17:41:09 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/flexbox/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>前端</title>
+        <link>https://jarsure.github.io/tags/%E5%89%8D%E7%AB%AF/</link>
+        <pubDate>Mon, 12 Aug 2024 17:41:09 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/%E5%89%8D%E7%AB%AF/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Html</title>
+        <link>https://jarsure.github.io/tags/html/</link>
+        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/html/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Markdown</title>
+        <link>https://jarsure.github.io/tags/markdown/</link>
+        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/markdown/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Themes</title>
+        <link>https://jarsure.github.io/tags/themes/</link>
+        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/themes/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Tag With Whitespaces</title>
+        <link>https://jarsure.github.io/tags/tag-with-whitespaces/</link>
+        <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/tag-with-whitespaces/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Text</title>
+        <link>https://jarsure.github.io/tags/text/</link>
+        <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/text/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Emoji</title>
+        <link>https://jarsure.github.io/tags/emoji/</link>
+        <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/emoji/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

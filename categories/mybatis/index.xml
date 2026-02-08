@@ -13,7 +13,7 @@
         <pubDate>Sun, 08 Feb 2026 08:24:37 +0800</pubDate>
         
         <guid>https://jarsure.github.io/p/mybatis-jie-guo-ying-she/</guid>
-        <description>&lt;hr&gt;
+        <description>&lt;p&gt;摘要测试&lt;/p&gt;
 &lt;h2 id=&#34;20260112-结果映射resultmap&#34;&gt;20260112 结果映射resultMap
 &lt;/h2&gt;&lt;p&gt;问题: 当实体类的属性名和数据库的字段名不匹配,如何匹配相应的实体类属性和目标数据库字段?&lt;/p&gt;
 &lt;h3 id=&#34;方法1-sql语句起别名&#34;&gt;方法1: sql语句起别名

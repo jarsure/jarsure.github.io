@@ -20,21 +20,8 @@
                 href="https://jarsure.github.io/"
                 />
   </url><url>
-    <loc>https://jarsure.github.io/post/</loc>
-    <lastmod>2026-02-08T01:22:54+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ar"
-                href="https://jarsure.github.io/ar/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://jarsure.github.io/post/"
-                />
-  </url><url>
     <loc>https://jarsure.github.io/categories/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+    <lastmod>2026-02-08T01:22:54+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -51,23 +38,24 @@
                 href="https://jarsure.github.io/categories/"
                 />
   </url><url>
-    <loc>https://jarsure.github.io/tags/java/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+    <loc>https://jarsure.github.io/p/hugo%E7%9A%84python%E8%84%9A%E6%9C%AC%E6%9C%80%E7%BB%88%E6%B5%8B%E8%AF%95%E5%B9%B6push/</loc>
+    <lastmod>2026-02-08T01:22:54+00:00</lastmod>
   </url><url>
-    <loc>https://jarsure.github.io/tags/mybatis/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
-  </url><url>
-    <loc>https://jarsure.github.io/categories/mybatis/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
-  </url><url>
-    <loc>https://jarsure.github.io/p/mybatis-jie-guo-ying-she/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
-  </url><url>
-    <loc>https://jarsure.github.io/tags/ssm/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+    <loc>https://jarsure.github.io/post/</loc>
+    <lastmod>2026-02-08T01:22:54+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ar"
+                href="https://jarsure.github.io/ar/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://jarsure.github.io/post/"
+                />
   </url><url>
     <loc>https://jarsure.github.io/tags/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+    <lastmod>2026-02-08T01:22:54+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -84,11 +72,38 @@
                 href="https://jarsure.github.io/tags/"
                 />
   </url><url>
-    <loc>https://jarsure.github.io/p/test3/</loc>
-    <lastmod>2026-02-08T02:08:24+08:00</lastmod>
+    <loc>https://jarsure.github.io/tags/test/</loc>
+    <lastmod>2026-02-08T01:22:54+00:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/categories/test/</loc>
-    <lastmod>2026-02-08T02:01:21+08:00</lastmod>
+    <lastmod>2026-02-08T01:22:54+00:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/tags/ceshi/</loc>
+    <lastmod>2026-02-08T09:20:35+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/categories/ceshi/</loc>
+    <lastmod>2026-02-08T09:20:35+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/p/ce-shi-tu-pian-biao-qian-abd/</loc>
+    <lastmod>2026-02-08T09:20:35+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/tags/java/</loc>
+    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/tags/mybatis/</loc>
+    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/categories/mybatis/</loc>
+    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/p/mybatis-jie-guo-ying-she/</loc>
+    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/tags/ssm/</loc>
+    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/p/test3/</loc>
+    <lastmod>2026-02-08T02:08:24+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/tags/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2026-02-08T02:01:21+08:00</lastmod>

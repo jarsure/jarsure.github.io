@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Python on 演示站点</title>
+        <link>https://jarsure.github.io/tags/python/</link>
+        <description>Recent content in Python on 演示站点</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>jarsure</copyright>
+        <lastBuildDate>Sun, 08 Feb 2026 09:37:19 +0800</lastBuildDate><atom:link href="https://jarsure.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>hugo&#43;python&#43;hugo-theme-stack创建个人博客</title>
+        <link>https://jarsure.github.io/p/hugo-python-hugo-theme-stack-chuang-jian-ge-ren-bo-ke/</link>
+        <pubDate>Sun, 08 Feb 2026 09:37:19 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/p/hugo-python-hugo-theme-stack-chuang-jian-ge-ren-bo-ke/</guid>
+        <description>&lt;img src="https://jarsure.github.io/p/hugo-python-hugo-theme-stack-chuang-jian-ge-ren-bo-ke/cover.webp" alt="Featured image of post hugo&#43;python&#43;hugo-theme-stack创建个人博客" /&gt;&lt;h2 id=&#34;版本问题&#34;&gt;版本问题
+&lt;/h2&gt;&lt;p&gt;首先是版本问题,网上很多人上传的教程都没有谈及,由于hugo官方和stack都处在积极更新中,两方的版本冲突不断,想找到两方相互兼容的版本反而随着他们不断地更新,愈发困难.&lt;/p&gt;
+&lt;p&gt;当前使用的版本:&lt;/p&gt;
+&lt;p&gt;hugo版本: hugo v0.131.0&lt;/p&gt;
+&lt;p&gt;stack主题版本: hugo-theme-stack-3.26.0&lt;/p&gt;
+&lt;h2 id=&#34;脚本&#34;&gt;脚本
+&lt;/h2&gt;&lt;p&gt;为了方便个人使用,安装了python脚本和自动部署脚本&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Tags on 演示站点</title>
+        <title>Tags on jarsure&#39;s blog</title>
         <link>https://jarsure.github.io/tags/</link>
-        <description>Recent content in Tags on 演示站点</description>
+        <description>Recent content in Tags on jarsure&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>jarsure</copyright>
-        <lastBuildDate>Sun, 08 Feb 2026 09:37:19 +0800</lastBuildDate><atom:link href="https://jarsure.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 08 Feb 2026 10:22:21 +0800</lastBuildDate><atom:link href="https://jarsure.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Mybatis</title>
+        <link>https://jarsure.github.io/tags/mybatis/</link>
+        <pubDate>Sun, 08 Feb 2026 10:22:21 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/mybatis/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>动态sql</title>
+        <link>https://jarsure.github.io/tags/%E5%8A%A8%E6%80%81sql/</link>
+        <pubDate>Sun, 08 Feb 2026 10:22:21 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/%E5%8A%A8%E6%80%81sql/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Hugo</title>
         <link>https://jarsure.github.io/tags/hugo/</link>
         <pubDate>Sun, 08 Feb 2026 09:37:19 +0800</pubDate>
@@ -32,14 +48,6 @@
         <description></description>
         </item>
         <item>
-        <title>Mybatis</title>
-        <link>https://jarsure.github.io/tags/mybatis/</link>
-        <pubDate>Sun, 08 Feb 2026 08:24:37 +0800</pubDate>
-        
-        <guid>https://jarsure.github.io/tags/mybatis/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>Ssm</title>
         <link>https://jarsure.github.io/tags/ssm/</link>
         <pubDate>Sun, 08 Feb 2026 08:24:37 +0800</pubDate>
@@ -50,7 +58,7 @@
         <item>
         <title>Css</title>
         <link>https://jarsure.github.io/tags/css/</link>
-        <pubDate>Mon, 12 Aug 2024 17:41:09 +0800</pubDate>
+        <pubDate>Fri, 12 Dec 2025 17:41:09 +0800</pubDate>
         
         <guid>https://jarsure.github.io/tags/css/</guid>
         <description></description>
@@ -58,7 +66,7 @@
         <item>
         <title>Flex</title>
         <link>https://jarsure.github.io/tags/flex/</link>
-        <pubDate>Mon, 12 Aug 2024 17:41:09 +0800</pubDate>
+        <pubDate>Fri, 12 Dec 2025 17:41:09 +0800</pubDate>
         
         <guid>https://jarsure.github.io/tags/flex/</guid>
         <description></description>
@@ -66,7 +74,7 @@
         <item>
         <title>Flexbox</title>
         <link>https://jarsure.github.io/tags/flexbox/</link>
-        <pubDate>Mon, 12 Aug 2024 17:41:09 +0800</pubDate>
+        <pubDate>Fri, 12 Dec 2025 17:41:09 +0800</pubDate>
         
         <guid>https://jarsure.github.io/tags/flexbox/</guid>
         <description></description>
@@ -74,7 +82,7 @@
         <item>
         <title>前端</title>
         <link>https://jarsure.github.io/tags/%E5%89%8D%E7%AB%AF/</link>
-        <pubDate>Mon, 12 Aug 2024 17:41:09 +0800</pubDate>
+        <pubDate>Fri, 12 Dec 2025 17:41:09 +0800</pubDate>
         
         <guid>https://jarsure.github.io/tags/%E5%89%8D%E7%AB%AF/</guid>
         <description></description>

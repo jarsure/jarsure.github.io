@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jarsure.github.io/</loc>
-    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
+    <lastmod>2026-02-08T10:22:21+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -20,38 +20,8 @@
                 href="https://jarsure.github.io/"
                 />
   </url><url>
-    <loc>https://jarsure.github.io/tags/hugo/</loc>
-    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
-  </url><url>
-    <loc>https://jarsure.github.io/p/hugo-python-hugo-theme-stack-chuang-jian-ge-ren-bo-ke/</loc>
-    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
-  </url><url>
-    <loc>https://jarsure.github.io/post/</loc>
-    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
-  </url><url>
-    <loc>https://jarsure.github.io/tags/python/</loc>
-    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
-  </url><url>
-    <loc>https://jarsure.github.io/tags/</loc>
-    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://jarsure.github.io/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ar"
-                href="https://jarsure.github.io/ar/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://jarsure.github.io/tags/"
-                />
-  </url><url>
     <loc>https://jarsure.github.io/categories/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+    <lastmod>2026-02-08T10:22:21+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -68,13 +38,49 @@
                 href="https://jarsure.github.io/categories/"
                 />
   </url><url>
-    <loc>https://jarsure.github.io/tags/java/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
-  </url><url>
     <loc>https://jarsure.github.io/tags/mybatis/</loc>
-    <lastmod>2026-02-08T08:24:37+08:00</lastmod>
+    <lastmod>2026-02-08T10:22:21+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/categories/mybatis/</loc>
+    <lastmod>2026-02-08T10:22:21+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/p/mybatis-dynamicsql-dong-tai-sql/</loc>
+    <lastmod>2026-02-08T10:22:21+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/post/</loc>
+    <lastmod>2026-02-08T10:22:21+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/tags/</loc>
+    <lastmod>2026-02-08T10:22:21+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://jarsure.github.io/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ar"
+                href="https://jarsure.github.io/ar/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://jarsure.github.io/tags/"
+                />
+  </url><url>
+    <loc>https://jarsure.github.io/tags/%E5%8A%A8%E6%80%81sql/</loc>
+    <lastmod>2026-02-08T10:22:21+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/tags/hugo/</loc>
+    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/p/hugo-python-hugo-theme-stack-chuang-jian-ge-ren-bo-ke/</loc>
+    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/tags/python/</loc>
+    <lastmod>2026-02-08T09:37:19+08:00</lastmod>
+  </url><url>
+    <loc>https://jarsure.github.io/tags/java/</loc>
     <lastmod>2026-02-08T08:24:37+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/p/mybatis-jie-guo-ying-she/</loc>
@@ -87,31 +93,31 @@
     <lastmod>2026-02-07T23:32:13+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/tags/css/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/categories/css/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/tags/flex/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/categories/flex/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/tags/flexbox/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/categories/flexbox/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/p/flexbox%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/tags/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2024-08-12T17:41:09+08:00</lastmod>
+    <lastmod>2025-12-12T17:41:09+08:00</lastmod>
   </url><url>
     <loc>https://jarsure.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>

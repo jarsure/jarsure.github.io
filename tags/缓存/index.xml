@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>缓存 on jarsure&#39;s blog</title>
+        <link>https://jarsure.github.io/tags/%E7%BC%93%E5%AD%98/</link>
+        <description>Recent content in 缓存 on jarsure&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>jarsure</copyright>
+        <lastBuildDate>Mon, 09 Feb 2026 19:43:13 +0800</lastBuildDate><atom:link href="https://jarsure.github.io/tags/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>mybatis缓存</title>
+        <link>https://jarsure.github.io/p/mybatis-huan-cun/</link>
+        <pubDate>Mon, 09 Feb 2026 19:43:13 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/p/mybatis-huan-cun/</guid>
+        <description>&lt;img src="https://jarsure.github.io/p/mybatis-huan-cun/cover.webp" alt="Featured image of post mybatis缓存" /&gt;&lt;h1 id=&#34;mybatis缓存&#34;&gt;mybatis缓存
+&lt;/h1&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

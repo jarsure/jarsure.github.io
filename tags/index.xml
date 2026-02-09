@@ -7,12 +7,20 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>jarsure</copyright>
-        <lastBuildDate>Sun, 08 Feb 2026 10:22:21 +0800</lastBuildDate><atom:link href="https://jarsure.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 09 Feb 2026 19:43:13 +0800</lastBuildDate><atom:link href="https://jarsure.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Mybatis</title>
         <link>https://jarsure.github.io/tags/mybatis/</link>
-        <pubDate>Sun, 08 Feb 2026 10:22:21 +0800</pubDate>
+        <pubDate>Mon, 09 Feb 2026 19:43:13 +0800</pubDate>
         
         <guid>https://jarsure.github.io/tags/mybatis/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>缓存</title>
+        <link>https://jarsure.github.io/tags/%E7%BC%93%E5%AD%98/</link>
+        <pubDate>Mon, 09 Feb 2026 19:43:13 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/tags/%E7%BC%93%E5%AD%98/</guid>
         <description></description>
         </item>
         <item>

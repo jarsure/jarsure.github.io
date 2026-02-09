@@ -431,8 +431,16 @@
 缓存；此后若再次执行相同的查询语句，结果就会从缓存中获取
 二级缓存开启的条件：
 a&gt;在核心配置文件中，设置全局配置属性cacheEnabled=&ldquo;true&rdquo;，默认为true，不需要设置
-b&gt;在映射文件中设置标签<cache/>
-c&gt;<strong>二级缓存必须在SqlSession关闭或提交之后有效</strong>  //sqlsession没有关闭时,查询出的数据默认存放在一级缓存,只有sqlsession关闭了,才会存入二级缓存.
+b&gt;在映射文件中设置标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;cache/&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>c&gt;<strong>二级缓存必须在SqlSession关闭或提交之后有效</strong>  //sqlsession没有关闭时,查询出的数据默认存放在一级缓存,只有sqlsession关闭了,才会存入二级缓存.
 d&gt;查询的数据所转换的实体类类型必须实现序列化的接口</p>
 <h3 id="使二级缓存失效的情况">使二级缓存失效的情况：
 </h3><p>两次查询之间执行了任意的增删改，会使一级和二级缓存同时失效</p>
@@ -534,7 +542,7 @@ SqlSession关闭之后，一级缓存中的数据会写入二级缓存</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="设置二级缓存的类型">设置二级缓存的类型
-</h4><p>在mapper配置文件中的<cache/>标签内设置type属性</p>
+</h4><p>在mapper配置文件中的cache标签内设置type属性</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1

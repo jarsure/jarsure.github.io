@@ -29,8 +29,16 @@
 缓存；此后若再次执行相同的查询语句，结果就会从缓存中获取
 二级缓存开启的条件：
 a&amp;gt;在核心配置文件中，设置全局配置属性cacheEnabled=&amp;ldquo;true&amp;rdquo;，默认为true，不需要设置
-b&amp;gt;在映射文件中设置标签&lt;cache/&gt;
-c&amp;gt;&lt;strong&gt;二级缓存必须在SqlSession关闭或提交之后有效&lt;/strong&gt;  //sqlsession没有关闭时,查询出的数据默认存放在一级缓存,只有sqlsession关闭了,才会存入二级缓存.
+b&amp;gt;在映射文件中设置标签&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;cache/&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;c&amp;gt;&lt;strong&gt;二级缓存必须在SqlSession关闭或提交之后有效&lt;/strong&gt;  //sqlsession没有关闭时,查询出的数据默认存放在一级缓存,只有sqlsession关闭了,才会存入二级缓存.
 d&amp;gt;查询的数据所转换的实体类类型必须实现序列化的接口&lt;/p&gt;
 &lt;h3 id=&#34;使二级缓存失效的情况&#34;&gt;使二级缓存失效的情况：
 &lt;/h3&gt;&lt;p&gt;两次查询之间执行了任意的增删改，会使一级和二级缓存同时失效&lt;/p&gt;
@@ -132,7 +140,7 @@ SqlSession关闭之后，一级缓存中的数据会写入二级缓存&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;设置二级缓存的类型&#34;&gt;设置二级缓存的类型
-&lt;/h4&gt;&lt;p&gt;在mapper配置文件中的&lt;cache/&gt;标签内设置type属性&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;在mapper配置文件中的cache标签内设置type属性&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1

@@ -430,8 +430,8 @@
 </h2><p>二级缓存是SqlSessionFactory级别，通过同一个SqlSessionFactory创建的SqlSession查询的结果会被
 缓存；此后若再次执行相同的查询语句，结果就会从缓存中获取
 二级缓存开启的条件：
-a&gt;在核心配置文件中，设置全局配置属性cacheEnabled=&ldquo;true&rdquo;，默认为true，不需要设置
-b&gt;在映射文件中设置标签</p>
+1)在核心配置文件中，设置全局配置属性cacheEnabled=&ldquo;true&rdquo;，默认为true，不需要设置
+2)在映射文件中设置标签</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -440,31 +440,43 @@ b&gt;在映射文件中设置标签</p>
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;cache/&gt;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>c&gt;<strong>二级缓存必须在SqlSession关闭或提交之后有效</strong>  //sqlsession没有关闭时,查询出的数据默认存放在一级缓存,只有sqlsession关闭了,才会存入二级缓存.
-d&gt;查询的数据所转换的实体类类型必须实现序列化的接口</p>
+</div><p>3)<strong>二级缓存必须在SqlSession关闭或提交之后有效</strong>  //sqlsession没有关闭时,查询出的数据默认存放在一级缓存,只有sqlsession关闭了,才会存入二级缓存.
+4)查询的数据所转换的实体类类型必须实现序列化的接口</p>
 <h3 id="使二级缓存失效的情况">使二级缓存失效的情况：
 </h3><p>两次查询之间执行了任意的增删改，会使一级和二级缓存同时失效</p>
 <h3 id="二级缓存的相关配置">二级缓存的相关配置
 </h3><p>在mapper配置文件中添加的cache标签可以设置一些属性：</p>
-<p>①eviction属性：缓存回收策略，默认的是 LRU。
+<ul>
+<li>
+<p>eviction属性：缓存回收策略，默认的是 LRU。
 LRU（Least Recently Used） – 最近最少使用的：移除最长时间不被使用的对象。
-FIFO（First in First out） – 先进先出：按对象进入缓存的顺序来移除它们。
-SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。</p>
+FIFO（First in First out） – 先进先出：按对象进入缓存的顺序来移除它们。</p>
+<p>SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。</p>
 <p>WEAK – 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。</p>
-<p>②flushInterval属性：刷新间隔，单位毫秒
-默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新
-③size属性：引用数目，正整数
-代表缓存最多可以存储多少个对象，太大容易导致内存溢出
-④readOnly属性：只读， true/false
+</li>
+<li>
+<p>flushInterval属性：刷新间隔，单位毫秒
+默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新</p>
+</li>
+<li>
+<p>size属性：引用数目，正整数
+代表缓存最多可以存储多少个对象，太大容易导致内存溢出</p>
+</li>
+<li>
+<p>readOnly属性：只读， true/false
 true：只读缓存；会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了 很重
 要的性能优势。
 false：读写缓存；会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是
 false。</p>
+</li>
+</ul>
 <h2 id="mybatis缓存查询的顺序">MyBatis缓存查询的顺序
-</h2><p>先查询二级缓存，因为二级缓存中可能会有其他程序已经查出来的数据，可以拿来直接使用。
-如果二级缓存没有命中，再查询一级缓存
-如果一级缓存也没有命中，则查询数据库
-SqlSession关闭之后，一级缓存中的数据会写入二级缓存</p>
+</h2><ul>
+<li>先查询二级缓存，因为二级缓存中可能会有其他程序已经查出来的数据，可以拿来直接使用。</li>
+<li>如果二级缓存没有命中，再查询一级缓存</li>
+<li>如果一级缓存也没有命中，则查询数据库</li>
+<li>SqlSession关闭之后，一级缓存中的数据会写入二级缓存</li>
+</ul>
 <h2 id="整合第三方缓存ehcache">整合第三方缓存EhCache
 </h2><h4 id="添加依赖">添加依赖
 </h4><div class="highlight"><div class="chroma">
@@ -498,10 +510,12 @@ SqlSession关闭之后，一级缓存中的数据会写入二级缓存</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="各jar包功能">各jar包功能
-</h4><p><strong>mybatis-ehcache</strong>: Mybatis和EHCache的整合包
-<strong>ehcache</strong> :EHCache核心包
-<strong>slf4j-api</strong> :SLF4J日志门面包
-<strong>logback-classic</strong> :支持SLF4J门面接口的一个具体实现</p>
+</h4><ul>
+<li><strong>mybatis-ehcache</strong>: Mybatis和EHCache的整合包</li>
+<li><strong>ehcache</strong> :EHCache核心包</li>
+<li><strong>slf4j-api</strong> :SLF4J日志门面包</li>
+<li><strong>logback-classic</strong> :支持SLF4J门面接口的一个具体实现</li>
+</ul>
 <h4 id="创建ehcache的配置文件ehcachexml">创建EHCache的配置文件ehcache.xml
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -658,6 +672,54 @@ SqlSession关闭之后，一级缓存中的数据会写入二级缓存</p>
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/mybatis-cha-jian-pagehelper/">
+        
+        
+            <div class="article-image">
+                <img src="/p/mybatis-cha-jian-pagehelper/cover.a9e4c1bb660d72cf4d6a3d1b3db2cb78_hu5070977219510813123.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post mybatis插件---pagehelper"
+                        data-key="mybatis-cha-jian-pagehelper" 
+                        data-hash="md5-qeTBu2YNcs9Naj0bPbLLeA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">mybatis插件---pagehelper</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/mybatis-ni-xiang-gong-cheng-mybatis-generator/">
+        
+        
+            <div class="article-image">
+                <img src="/p/mybatis-ni-xiang-gong-cheng-mybatis-generator/cover.1003317ce42ee41756002d2d8f5b5fa8_hu14639849149992568104.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Mybatis逆向工程(Mybatis generator)"
+                        data-key="mybatis-ni-xiang-gong-cheng-mybatis-generator" 
+                        data-hash="md5-EAMxfOQu5BdWAC0tj1tfqA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Mybatis逆向工程(Mybatis generator)</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="">

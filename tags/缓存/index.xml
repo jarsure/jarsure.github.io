@@ -28,8 +28,8 @@
 &lt;/h2&gt;&lt;p&gt;二级缓存是SqlSessionFactory级别，通过同一个SqlSessionFactory创建的SqlSession查询的结果会被
 缓存；此后若再次执行相同的查询语句，结果就会从缓存中获取
 二级缓存开启的条件：
-a&amp;gt;在核心配置文件中，设置全局配置属性cacheEnabled=&amp;ldquo;true&amp;rdquo;，默认为true，不需要设置
-b&amp;gt;在映射文件中设置标签&lt;/p&gt;
+1)在核心配置文件中，设置全局配置属性cacheEnabled=&amp;ldquo;true&amp;rdquo;，默认为true，不需要设置
+2)在映射文件中设置标签&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -38,31 +38,43 @@ b&amp;gt;在映射文件中设置标签&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;cache/&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;c&amp;gt;&lt;strong&gt;二级缓存必须在SqlSession关闭或提交之后有效&lt;/strong&gt;  //sqlsession没有关闭时,查询出的数据默认存放在一级缓存,只有sqlsession关闭了,才会存入二级缓存.
-d&amp;gt;查询的数据所转换的实体类类型必须实现序列化的接口&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;3)&lt;strong&gt;二级缓存必须在SqlSession关闭或提交之后有效&lt;/strong&gt;  //sqlsession没有关闭时,查询出的数据默认存放在一级缓存,只有sqlsession关闭了,才会存入二级缓存.
+4)查询的数据所转换的实体类类型必须实现序列化的接口&lt;/p&gt;
 &lt;h3 id=&#34;使二级缓存失效的情况&#34;&gt;使二级缓存失效的情况：
 &lt;/h3&gt;&lt;p&gt;两次查询之间执行了任意的增删改，会使一级和二级缓存同时失效&lt;/p&gt;
 &lt;h3 id=&#34;二级缓存的相关配置&#34;&gt;二级缓存的相关配置
 &lt;/h3&gt;&lt;p&gt;在mapper配置文件中添加的cache标签可以设置一些属性：&lt;/p&gt;
-&lt;p&gt;①eviction属性：缓存回收策略，默认的是 LRU。
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;eviction属性：缓存回收策略，默认的是 LRU。
 LRU（Least Recently Used） – 最近最少使用的：移除最长时间不被使用的对象。
-FIFO（First in First out） – 先进先出：按对象进入缓存的顺序来移除它们。
-SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。&lt;/p&gt;
+FIFO（First in First out） – 先进先出：按对象进入缓存的顺序来移除它们。&lt;/p&gt;
+&lt;p&gt;SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。&lt;/p&gt;
 &lt;p&gt;WEAK – 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。&lt;/p&gt;
-&lt;p&gt;②flushInterval属性：刷新间隔，单位毫秒
-默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新
-③size属性：引用数目，正整数
-代表缓存最多可以存储多少个对象，太大容易导致内存溢出
-④readOnly属性：只读， true/false
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;flushInterval属性：刷新间隔，单位毫秒
+默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;size属性：引用数目，正整数
+代表缓存最多可以存储多少个对象，太大容易导致内存溢出&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;readOnly属性：只读， true/false
 true：只读缓存；会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了 很重
 要的性能优势。
 false：读写缓存；会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是
 false。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;mybatis缓存查询的顺序&#34;&gt;MyBatis缓存查询的顺序
-&lt;/h2&gt;&lt;p&gt;先查询二级缓存，因为二级缓存中可能会有其他程序已经查出来的数据，可以拿来直接使用。
-如果二级缓存没有命中，再查询一级缓存
-如果一级缓存也没有命中，则查询数据库
-SqlSession关闭之后，一级缓存中的数据会写入二级缓存&lt;/p&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;先查询二级缓存，因为二级缓存中可能会有其他程序已经查出来的数据，可以拿来直接使用。&lt;/li&gt;
+&lt;li&gt;如果二级缓存没有命中，再查询一级缓存&lt;/li&gt;
+&lt;li&gt;如果一级缓存也没有命中，则查询数据库&lt;/li&gt;
+&lt;li&gt;SqlSession关闭之后，一级缓存中的数据会写入二级缓存&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;整合第三方缓存ehcache&#34;&gt;整合第三方缓存EhCache
 &lt;/h2&gt;&lt;h4 id=&#34;添加依赖&#34;&gt;添加依赖
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -96,10 +108,12 @@ SqlSession关闭之后，一级缓存中的数据会写入二级缓存&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;各jar包功能&#34;&gt;各jar包功能
-&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;mybatis-ehcache&lt;/strong&gt;: Mybatis和EHCache的整合包
-&lt;strong&gt;ehcache&lt;/strong&gt; :EHCache核心包
-&lt;strong&gt;slf4j-api&lt;/strong&gt; :SLF4J日志门面包
-&lt;strong&gt;logback-classic&lt;/strong&gt; :支持SLF4J门面接口的一个具体实现&lt;/p&gt;
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;mybatis-ehcache&lt;/strong&gt;: Mybatis和EHCache的整合包&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ehcache&lt;/strong&gt; :EHCache核心包&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;slf4j-api&lt;/strong&gt; :SLF4J日志门面包&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;logback-classic&lt;/strong&gt; :支持SLF4J门面接口的一个具体实现&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h4 id=&#34;创建ehcache的配置文件ehcachexml&#34;&gt;创建EHCache的配置文件ehcache.xml
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Pagehelper on jarsure&#39;s blog</title>
+        <link>https://jarsure.github.io/tags/pagehelper/</link>
+        <description>Recent content in Pagehelper on jarsure&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>jarsure</copyright>
+        <lastBuildDate>Tue, 31 Mar 2026 21:33:27 +0800</lastBuildDate><atom:link href="https://jarsure.github.io/tags/pagehelper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>mybatis插件---pagehelper</title>
+        <link>https://jarsure.github.io/p/mybatis-cha-jian-pagehelper/</link>
+        <pubDate>Tue, 31 Mar 2026 21:33:27 +0800</pubDate>
+        
+        <guid>https://jarsure.github.io/p/mybatis-cha-jian-pagehelper/</guid>
+        <description>&lt;img src="https://jarsure.github.io/p/mybatis-cha-jian-pagehelper/cover.webp" alt="Featured image of post mybatis插件---pagehelper" /&gt;&lt;hr&gt;
+&lt;h1 id=&#34;12分页插件&#34;&gt;12、分页插件
+&lt;/h1&gt;&lt;p&gt;limit index,pageSize&lt;/p&gt;
+&lt;p&gt;pageSize：每页显示的条数&lt;/p&gt;
+&lt;p&gt;pageNum：当前页的页码&lt;/p&gt;
+&lt;p&gt;index：当前页的起始索引，index=(pageNum-1)*pageSize&lt;/p&gt;
+&lt;p&gt;count：总记录数&lt;/p&gt;
+&lt;p&gt;totalPage：总页数&lt;/p&gt;
+&lt;p&gt;totalPage = count / pageSize;&lt;/p&gt;
+&lt;p&gt;if(count % pageSize != 0){&lt;/p&gt;
+&lt;p&gt;totalPage += 1;&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;pageSize=4，pageNum=1，index=0 limit 0,4&lt;/p&gt;
+&lt;p&gt;pageSize=4，pageNum=3，index=8 limit 8,4&lt;/p&gt;
+&lt;p&gt;pageSize=4，pageNum=6，index=20 limit 8,4&lt;/p&gt;
+&lt;p&gt;首页 上一页 2 3 4 5 6 下一页 末页&lt;/p&gt;
+&lt;h2 id=&#34;121分页插件的使用步骤&#34;&gt;12.1、分页插件的使用步骤
+&lt;/h2&gt;&lt;h3 id=&#34;添加依赖&#34;&gt;①添加依赖
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.github.pagehelper&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;pagehelper&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;5.2.0&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;配置分页插件&#34;&gt;②配置分页插件
+&lt;/h3&gt;&lt;p&gt;在MyBatis的核心配置文件中配置插件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;plugins&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c&#34;&gt;&amp;lt;!--设置分页插件--&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;plugin&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;interceptor=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;com.github.pagehelper.PageInterceptor&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/plugins&amp;gt;&lt;/span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;122分页插件的使用&#34;&gt;12.2、分页插件的使用
+&lt;/h2&gt;&lt;p&gt;a&amp;gt;在查询功能之前使用PageHelper.startPage(int pageNum, int pageSize)开启分页功能&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;pageNum：当前页的页码&lt;/p&gt;
+&lt;p&gt;pageSize：每页显示的条数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;b&amp;gt;在查询获取list集合之后，使用PageInfo&lt;T&gt; pageInfo = new PageInfo&amp;lt;&amp;gt;(List&lt;T&gt; list, int&lt;/p&gt;
+&lt;p&gt;navigatePages)获取分页相关数据&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;list：分页之后的数据&lt;/p&gt;
+&lt;p&gt;navigatePages：导航分页的页码数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;c&amp;gt;分页相关数据&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PageInfo{&lt;/p&gt;
+&lt;p&gt;pageNum=8, pageSize=4, size=2, startRow=29, endRow=30, total=30, pages=8,&lt;/p&gt;
+&lt;p&gt;list=Page{count=true, pageNum=8, pageSize=4, startRow=28, endRow=32, total=30,&lt;/p&gt;
+&lt;p&gt;pages=8, reasonable=false, pageSizeZero=false},&lt;/p&gt;
+&lt;p&gt;prePage=7, nextPage=0, isFirstPage=false, isLastPage=true, hasPreviousPage=true,&lt;/p&gt;
+&lt;p&gt;hasNextPage=false, navigatePages=5, navigateFirstPage4, navigateLastPage8,&lt;/p&gt;
+&lt;p&gt;navigatepageNums=[4, 5, 6, 7, 8]&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;pageNum：当前页的页码&lt;/p&gt;
+&lt;p&gt;pageSize：每页显示的条数&lt;/p&gt;
+&lt;p&gt;size：当前页显示的真实条数&lt;/p&gt;
+&lt;p&gt;total：总记录数&lt;/p&gt;
+&lt;p&gt;pages：总页数&lt;/p&gt;
+&lt;p&gt;prePage：上一页的页码&lt;/p&gt;
+&lt;p&gt;nextPage：下一页的页码&lt;/p&gt;
+&lt;p&gt;isFirstPage/isLastPage：是否为第一页/最后一页&lt;/p&gt;
+&lt;p&gt;hasPreviousPage/hasNextPage：是否存在上一页/下一页&lt;/p&gt;
+&lt;p&gt;navigatePages：导航分页的页码数&lt;/p&gt;
+&lt;p&gt;navigatepageNums：导航分页的页码，[1,2,3,4,5]&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
